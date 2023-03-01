@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body class=" ">
+    <div class="main">
+        <div class="container" id="container">
+            <header>
+                <h1>TODO</h1>
+                <div class="view-mode">
+                    <a href="#" class="" id="light-mode"><img src="./images/icon-sun.svg" alt="light-mode"></a>
+                    <a href="#" id="dark-mode"><img src="./images/icon-moon.svg" alt="dark-mode"></a>
+                </div>
+            </header>
+            <div class="todo-input" id="todo-input">
+                <div class="circle">
+                </div>
+                <form action="">
+                    <input type="text" placeholder="Create a new todo..." id="user-input" required>
+                </form>
+            </div>
+            <div class="todo-list-area">
+                <div class="todo-list" id="todo-list">
+                </div>
+                <div class="bottom-options" id="bottom-options">
+                    <div class="status">
+                        <p>0 items left</p>
+                    </div>
+                    <div class="categories">
+                        <a href="#" id="all">All</a>
+                        <a href="#" id="active">Active</a>
+                        <a href="#" id="completed">Completed</a>
+                    </div>
+                    <div class="clear-completed-list">
+                        <a href="#" id="clear-completed">Clear Completed</a>
+                    </div>
+                </div>
+            </div>
+            <div class="categories-mob" id="categories-mob">
+                <a href="#" id="all-mob">All</a>
+                <a href="#" id="active-mob">Active</a>
+                <a href="#" id="completed-mob">Completed</a>
+            </div>
+            <div class="message">
+                <p>Drag and drop to reorder list</p>
+            </div>
+        </div>
+    </div>
+    <script src="./js/script.js"></script>
+    <script src="./js/toggle.js"></script>
+</body>
+</html>
