@@ -31,7 +31,9 @@ function addNote() {
   updateStatus();
   themeToggle();
   removeListItem();
-  dragAndDrop();
+
+  // Store the updated todo list in local storage
+  updateLocalStorage();
 }
 
 function updateStatus() {
@@ -85,7 +87,9 @@ function clearCompleted(){
     allItems.forEach((item) => {
         if (item.querySelector('.todo-text').classList.contains('completed')) {
         item.remove();
+        localStorage.removeItem(item);
         }
+        updateLocalStorage();
     });
 }
 
@@ -95,58 +99,23 @@ function removeListItem(){
         item.querySelector(".cross").addEventListener('click', ()=>{
             item.remove();
             updateStatus();
+            updateLocalStorage();
         });
     });
 }
 
+function updateLocalStorage() {
+  const todoListItems = document.getElementById('todo-list').innerHTML;
+  localStorage.setItem('todoListItems', todoListItems);
+}
+
 function handleSubmit(event) {
 event.preventDefault();
-const value = input.value.trim(); // Trim whitespace from input value
+const value = input.value.trim();
 if (value.length > 0) {
-    addListItem(value);
-    input.value = ''; // Clear input field after adding new item
+    input.value = '';
 }
 }
-
-function dragAndDrop(){
-    const listItems = document.querySelectorAll('#todo-list .list-item');
-    let draggedItem = null;
-    listItems.forEach(item => {
-    item.addEventListener('dragstart', () => {
-      draggedItem = item;
-      setTimeout(() => {
-        item.style.display = 'none';
-      }, 0);
-    });
-    item.addEventListener('dragend', () => {
-        setTimeout(() => {
-          draggedItem.style.display = 'flex';
-          draggedItem = null;
-        }, 0);
-      });
-
-    item.addEventListener('dragover', e => {
-      e.preventDefault();
-      item.style.borderBottom = '1px dashed #CCCCCC';
-    });
-
-    item.addEventListener('drop', e => {
-        e.preventDefault();
-        item.style.borderBottom = 'solid #262839 1px';
-        if (draggedItem !== item) {
-            const parent = item.parentNode;
-            const nextSibling = item.nextSibling;
-            if (nextSibling) {
-                console.log('draggedItem:', draggedItem);
-                parent.insertBefore(draggedItem, nextSibling);
-            } else {
-                parent.appendChild(draggedItem);
-            }
-        }
-    });    
-  });
-};
-
 
 inputElement.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
@@ -161,6 +130,17 @@ inputElement.addEventListener('keypress', function(event) {
   });
 
 
+window.addEventListener('load', function() {
+  const todoList = document.getElementById('todo-list');
+  const todoListItems = localStorage.getItem('todoListItems');
+  if (todoListItems) {
+    todoList.innerHTML = todoListItems;
+    const checkboxes = todoList.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(addCheckboxEventListener);
+  }
+  updateStatus();
+})
+
 const activeButton = document.querySelector('#active');
 activeButton.addEventListener('click', displayActive);
 
@@ -169,6 +149,9 @@ completedButton.addEventListener('click', displayCompleted);
 
 const removeButton = document.querySelector('#clear-completed');
 removeButton.addEventListener('click', clearCompleted);
+
+const removeItem = document.querySelector('.cross');
+removeButton.addEventListener('click', removeListItem);
 
 const activeButtonMob = document.querySelector('#active-mob');
 activeButtonMob.addEventListener('click', displayActive);
