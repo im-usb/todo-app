@@ -1,4 +1,4 @@
-const listItem = '<div class="check"><input type="checkbox"></div><div class="todo-text" id="todo-text"><p>Complete online JS course</p></div><div class="remove"><a href="#" class="cross"><img src="./images/icon-cross.svg" alt=""></a></div>';
+const listItem = '<div class="check"><input type="checkbox" class="checkbox"></div><div class="todo-text" id="todo-text"><p>Complete online JS course</p></div><div class="remove"><a href="#" class="cross"><img src="./images/icon-cross.svg" alt=""></a></div>';
 const originalDiv = document.getElementById('list-item');
 const inputElement = document.querySelector('input[type="text"]');
 
@@ -7,10 +7,14 @@ function addCheckboxEventListener(checkbox) {
     const todoText = checkbox.parentElement.nextElementSibling;
     if (checkbox.checked) {
       todoText.classList.add('completed');
+      checkbox.setAttribute("checked","true");
       updateStatus();
+      updateLocalStorage();
     } else {
       todoText.classList.remove('completed');
+      checkbox.removeAttribute("checked");
       updateStatus();
+      updateLocalStorage();
     }
   });
 }
@@ -59,16 +63,16 @@ function displayAll() {
       });
 }
 
-  function displayActive() {
-    const all = document.querySelectorAll('.list-item');
-    all.forEach((item) => {
-      if (!item.querySelector('.todo-text').classList.contains('completed')) {
-        item.style.display = "flex";
-      } else {
-        item.style.display = "none";
-      }
-    });
-  }
+function displayActive() {
+  const all = document.querySelectorAll('.list-item');
+  all.forEach((item) => {
+    if (!item.querySelector('.todo-text').classList.contains('completed')) {
+      item.style.display = "flex";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
 
 function displayCompleted(){
     const allItems = document.querySelectorAll('#todo-list .list-item');
@@ -79,7 +83,6 @@ function displayCompleted(){
         item.style.display = 'none';
         }
     });
-
 }
 
 function clearCompleted(){
@@ -98,9 +101,10 @@ function removeListItem(){
     allItems.forEach((item) => {
         item.querySelector(".cross").addEventListener('click', ()=>{
             item.remove();
+            localStorage.removeItem(item);
             updateStatus();
             updateLocalStorage();
-        });
+        });   
     });
 }
 
@@ -137,9 +141,14 @@ window.addEventListener('load', function() {
     todoList.innerHTML = todoListItems;
     const checkboxes = todoList.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(addCheckboxEventListener);
+    
   }
   updateStatus();
+  removeListItem();
 })
+
+const allButton = document.querySelector('#all');
+allButton.addEventListener('click', displayAll);
 
 const activeButton = document.querySelector('#active');
 activeButton.addEventListener('click', displayActive);
@@ -150,14 +159,8 @@ completedButton.addEventListener('click', displayCompleted);
 const removeButton = document.querySelector('#clear-completed');
 removeButton.addEventListener('click', clearCompleted);
 
-const removeItem = document.querySelector('.cross');
-removeButton.addEventListener('click', removeListItem);
-
 const activeButtonMob = document.querySelector('#active-mob');
 activeButtonMob.addEventListener('click', displayActive);
-
-const completedButtonMob = document.querySelector('#completed-mob');
-completedButtonMob.addEventListener('click', displayCompleted);
 
 const input = document.querySelector('#user-input');
 const form = document.querySelector('form');

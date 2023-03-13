@@ -114,14 +114,6 @@ header h1 {
     opacity: 0.6; */
 }
 
-.list-item:hover {
-    border-top: 2px dashed #ccc;
-  }
-  
-.list-item:active {
-opacity: 1;
-}
-
 .container .todo-list .check {
     padding: 0;
     margin: 0;
@@ -157,13 +149,8 @@ opacity: 1;
 }
 
 .container .todo-list .remove img {
-    opacity: 0;
+    width: 12px;
     margin: 0 0 0 12px;
-}
-
-.container .todo-list .remove img:hover {
-    opacity: 1;
-    transition: all 0.5s;
     cursor: pointer;
 }
 
@@ -224,8 +211,7 @@ a:focus {
     text-decoration: line-through;
     text-decoration-color: #9c9eb2;
     color:#D2D1D6;
-  }
-
+}
 
 /* light mode */
 .container.light-mode .todo-input {
