@@ -5,6 +5,7 @@
         background: url(../images/bg-mobile-dark.jpg), #13131D;
         background-repeat: no-repeat;
         background-size: contain;
+        transition: 0.3s ease;
     }
 
     body.light-mode {
@@ -13,6 +14,7 @@
         background: url(../images/bg-mobile-light.jpg), #fbfbfb;
         background-repeat: no-repeat;
         background-size: contain;
+        transition: 0.3s ease;
     }
     main {
         margin: 50px 10px;
@@ -40,10 +42,12 @@
         border-radius: 5px;
         margin: 0 0 45px 0;
         box-shadow: 0px 6px 30px 0px;
+        transition: 0.3s ease;
     }
 
     .container.light-mode .categories-mob {
         background-color: #FFFFFF;
         box-shadow: 0px 6px 30px 0px;
+        transition: 0.3s ease;
     }
 }
