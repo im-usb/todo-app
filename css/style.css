@@ -12,6 +12,7 @@ body {
     background: url(../images/bg-desktop-dark.jpg), #13131D;
     background-repeat: no-repeat;
     background-size: contain;
+    transition: 0.3s ease;
 }
 
 body.light-mode {
@@ -20,6 +21,7 @@ body.light-mode {
     background: url(../images/bg-desktop-light.jpg), #fbfbfb;
     background-repeat: no-repeat;
     background-size: contain;
+    transition: 0.3s ease;
 }
 
 main {
@@ -50,10 +52,12 @@ header h1 {
 
 #dark-mode{
     display: none;
+    transition: 0.3s ease;
 }
 
 #light-mode {
     display: block;
+    transition: 0.3s ease;
 }
 
 .container .todo-input {
@@ -216,24 +220,29 @@ a:focus {
 /* light mode */
 .container.light-mode .todo-input {
     background-color: #FFFFFF;
+    transition: 0.3s ease;
 }
 
 .container.light-mode .todo-input .circle {
     padding: 13px;
     border: solid #E4E4E6 2px;
     border-radius: 50%;
+    transition: 0.3s ease;
 }
 
 .container.light-mode .todo-input form input {
     background-color: #FFFFFF;
+    transition: 0.3s ease;
 }
 
 .container.light-mode .list-item {
     background-color: #FFFFFF;
+    transition: 0.3s ease;
 }
 
 .container.light-mode .todo-list {
     background-color: #FFFFFF;
+    transition: 0.3s ease;
 }
 
 .container.light-mode .todo-list .check input{
@@ -241,6 +250,7 @@ a:focus {
     padding: 13px;
     border: solid #E4E4E6 2px;
     border-radius: 50%;
+    transition: 0.3s ease;
 }
 
 .container.light-mode .todo-list .check input:checked {
@@ -250,10 +260,12 @@ a:focus {
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto;
+    transition: 0.3s ease;
 }
 
 
 
 .container.container.light-mode .bottom-options {
     background-color: #FFFFFF;
+    transition: 0.3s ease;
 }
